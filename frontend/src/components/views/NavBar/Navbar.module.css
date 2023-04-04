@@ -1,0 +1,76 @@
+.navContainer{
+    background-color: rgb(244, 244, 239);
+    padding: 50px 100px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 10px rgb(234, 233, 233);
+}
+
+.logo{
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logo:hover{
+    cursor: pointer;
+    color: rgb(226, 50, 50);
+}
+
+.menuContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+}
+
+.menuItem{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menuItem:hover{
+    cursor: pointer;
+    color: rgb(226, 50, 50);
+}
+
+.loginContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+}
+
+.loginBtn{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.loginBtn:hover{
+    cursor: pointer;
+    color: rgb(226, 50, 50);
+}
+
+.registerBtn{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.registerBtn:hover{
+    cursor: pointer;
+    color: rgb(226, 50, 50);
+}
+
+.logoutBtn{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logoutBtn:hover{
+    cursor: pointer;
+    color: rgb(226, 50, 50);
+}
+
+

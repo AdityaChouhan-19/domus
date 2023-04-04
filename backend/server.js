@@ -5,12 +5,11 @@ import cors from 'cors';
 
 import mongoose from 'mongoose';
 
-import bcrypt from 'bcryptjs';
 const app = express();
 
-import jwt from 'jsonwebtoken';
 
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 import multer from 'multer';
 const uploadMiddleware = multer({ dest: 'uploads/' });
@@ -24,17 +23,18 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
-import authRouter from './app/auth/auth.route.js';
 import userRouter from './app/user/user.route.js';
 import postRouter from './app/post/post.route.js';
 
 
 const Port = 4000;
-
-
-
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+
+//application/x-www-form-urlencoded 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
@@ -47,8 +47,6 @@ db.on('error', () => console.error('Connection Error'));
 
 
 
-
-app.use('/', authRouter);
 app.use('/', userRouter);
 app.use('/', postRouter);
 
