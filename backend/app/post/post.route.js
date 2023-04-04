@@ -1,16 +1,19 @@
 import { Router } from "express";
-import { CreatePost, GetPost, GetPosts, UpdatePost } from "./post.controller.js";
+import { CreatePost, GetMyPosts, GetPost, GetPosts, UpdatePost } from "./post.controller.js";
 import multer from 'multer';
+import auth from "../middleware/auth.js";
 const uploadMiddleware = multer({ dest: 'uploads/' });
 
 const router = Router();
 
-router.post('/post', uploadMiddleware.single('file'), CreatePost);
+router.post('/api/post', uploadMiddleware.single('file'), CreatePost);
 
-router.put('/post', uploadMiddleware.single('file'), UpdatePost);
+router.put('/api/post', uploadMiddleware.single('file'), UpdatePost);
 
-router.get('/post', GetPosts);
+router.get('/api/post', GetPosts);
 
-router.get('/post/:id', GetPost);
+router.get('/api/post/myposting', auth, GetMyPosts);
+
+router.get('/api/post/:id', GetPost);
 
 export default router;

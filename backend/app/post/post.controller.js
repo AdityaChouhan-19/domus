@@ -58,11 +58,24 @@ export async function UpdatePost(req, res){
 }
 
 export async function GetPosts(req, res){
+    console.log('getPosts called@@@@@@@@')
     res.json(
         await Post.find()
             .populate('author', ['username'])
             .sort({createdAt: -1})
             .limit(20)
+    );
+}
+
+export async function GetMyPosts(req, res){
+    //const {userId} = req.user;
+    console.log('myposting called')
+    //console.log(req.user);
+    res.json(
+        await Post.find()
+            .populate('author', ['username'])
+            .sort({createdAt: -1})
+            .limit(1)
     );
 }
 
