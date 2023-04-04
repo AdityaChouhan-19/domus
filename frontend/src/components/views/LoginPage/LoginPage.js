@@ -8,6 +8,12 @@ import { API_URL } from '../../../config/config.js';
 import { useQuery, useQueryClient } from 'react-query'
 import {auth, login} from '../../../api/auth.js';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+import styles from './LoginPage.module.css';
+
 export default function LoginPage(){
     const redirect = useNavigate();
 
@@ -28,7 +34,7 @@ export default function LoginPage(){
         setPassword(event.currentTarget.value)
     }
 
-    const onSubmitHandler = async (event) => {
+    const onSubmitHandler = (event) => {
         event.preventDefault();
 
         let body = {
@@ -36,41 +42,48 @@ export default function LoginPage(){
             password: Password
         }
 
-        
-
-        await Axios.post(API_URL + '/api/users/login', body, { withCredentials: true }).then((res) => {
+        Axios.post(API_URL + '/api/users/login', body, { withCredentials: true }).then((res) => {
             console.log(res.data)
             localStorage.setItem('loginInfo', JSON.stringify(res.data));
             setLoginInfo(res.data.userId);
-            return redirect('/')
+            refetch();
+            redirect('/')
         })
 
     }
 
-    const { isLoading, error, data } = useQuery('auth', auth)
+    const { isLoading, error, data, refetch } = useQuery('auth', auth)
     if (isLoading) return 'Loading...'
     if (error) return 'An error has occurred: ' + error.message
     if(data.isAuth) return redirect('/')
 
 
     return (
+        <>
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '100vh'
+            , width: '100%', height: '80vh'
         }}>
-            <form style={{ display: 'flex', flexDirection: 'column' }}
-                onSubmit={onSubmitHandler}
+            <Box
+            component="form"
+            sx={{
+                '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            className={styles.formTag}
             >
-                <label>Email</label>
-                <input type="email" value={Email} onChange={onEmailHandler} />
-                <label>Password</label>
-                <input type="password" value={Password} onChange={onPasswordHandler} />
-                <br />
-                <button type="submit">
+                <TextField id="outlined-basic" label="Email" variant="outlined"
+                 value={Email} onChange={onEmailHandler} 
+                />
+                <TextField id="outlined-basic" label="Password" variant="outlined"
+                 value={Password} onChange={onPasswordHandler} type="password" 
+                />
+                <Button onClick={onSubmitHandler} variant="contained" size="large">
                     Login
-                </button>
-                
-            </form>
+                </Button>
+            </Box>
         </div>
+        </>
     )
 }

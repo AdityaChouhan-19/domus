@@ -5,7 +5,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 2px 10px rgb(234, 233, 233);
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgb(196, 195, 195);
+    color: rgb(71, 71, 245);
 }
 
 .logo{
@@ -16,7 +18,7 @@
 
 .logo:hover{
     cursor: pointer;
-    color: rgb(226, 50, 50);
+    color: rgb(104, 104, 208);
 }
 
 .menuContainer{
@@ -33,7 +35,7 @@
 
 .menuItem:hover{
     cursor: pointer;
-    color: rgb(226, 50, 50);
+    color: rgb(104, 104, 208);
 }
 
 .loginContainer{
@@ -50,7 +52,7 @@
 
 .loginBtn:hover{
     cursor: pointer;
-    color: rgb(226, 50, 50);
+    color: rgb(104, 104, 208);
 }
 
 .registerBtn{
@@ -60,7 +62,7 @@
 
 .registerBtn:hover{
     cursor: pointer;
-    color: rgb(226, 50, 50);
+    color: rgb(104, 104, 208);
 }
 
 .logoutBtn{
@@ -70,7 +72,7 @@
 
 .logoutBtn:hover{
     cursor: pointer;
-    color: rgb(226, 50, 50);
+    color: rgb(104, 104, 208);
 }
 
 

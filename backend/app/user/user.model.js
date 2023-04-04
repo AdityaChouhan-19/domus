@@ -6,7 +6,7 @@ import {Secret} from '../utils/config.js';
 
 
 const userSchema = mongoose.Schema({
-    name: {
+    firstname: {
         type: String,
         maxlength: 50
     },
@@ -30,7 +30,6 @@ const userSchema = mongoose.Schema({
     image: String,
     institution: String,
     savedList: [String],
-    postingList: [String],
     token: {
         type: String
     },

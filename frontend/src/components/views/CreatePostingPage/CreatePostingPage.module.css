@@ -1,0 +1,21 @@
+.title{
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.formTag{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.formContainer{
+    border: 1px solid red;
+}
+
+.formContainer > div{
+    margin-bottom: 30px;
+}
