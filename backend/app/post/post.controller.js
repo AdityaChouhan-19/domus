@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import {Secret} from '../utils/config.js';
 
 export async function CreatePost(req, res){
+    console.log(req.file);
+    console.log('create post called!')
     const {originalname,path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
@@ -13,12 +15,14 @@ export async function CreatePost(req, res){
     const {token} = req.cookies;
     jwt.verify(token, Secret, {}, async (err,info) => {
         if (err) throw err;
-        const {title,summary,content,price} = req.body;
+        const {title,summary,content,price,nearBy,distance} = req.body;
         const postDoc = await Post.create({
         title,
         summary,
         content,
         price,
+        nearBy,
+        distance,
         cover:newPath,
         author:info.id,
         });

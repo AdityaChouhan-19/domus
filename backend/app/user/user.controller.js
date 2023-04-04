@@ -4,6 +4,7 @@ export async function Register(req, res){
     //get information from client
     //save into db. 
     const user = new User(req.body)
+    console.log("register called!@@@@@@@@@@@!@!@");
 
     user.save((err, userInfo) => {
         if (err) return res.json({ success: false, err })
@@ -22,7 +23,7 @@ export async function Login(req, res){
         if (!user) {
         return res.json({
             loginSuccess: false,
-            message: "제공된 이메일에 해당하는 유저가 없습니다."
+            message: "Can't fine the user."
         })
         }
 
@@ -33,7 +34,7 @@ export async function Login(req, res){
         // console.log('isMatch',isMatch)
 
         if (!isMatch)
-            return res.json({ loginSuccess: false, message: "비밀번호가 틀렸습니다." })
+            return res.json({ loginSuccess: false, message: "Wrong password." })
 
         //generate token.
         user.generateToken((err, user) => {

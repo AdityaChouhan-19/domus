@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import multer from 'multer';
-const uploadMiddleware = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'uploads/' });
 
 import fs from 'fs';
 import { MongoURI } from './app/utils/config.js';

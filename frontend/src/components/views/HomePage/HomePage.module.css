@@ -3,3 +3,15 @@
     
 }
 
+.searchBar{
+    padding: 40px;
+    background-color:rgb(71, 71, 245);;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgb(187, 186, 186);
+    color: snow;
+}
+

@@ -28,8 +28,11 @@ export default function HomePage(){
   );
 
   return (
-    <div className={styles.postingsContainer}>
-      {postings}
-    </div>
+    <>
+      <div className={styles.searchBar}>Search Bar</div>
+      <div className={styles.postingsContainer}>
+        {postings}
+      </div>
+    </>
   )
 }
