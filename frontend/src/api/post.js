@@ -7,11 +7,11 @@ export const getPostings = async () => {
     return data;
 };
 
-export const getPost = async (id) => {
-    const { data } = await Axios.get(API_URL + "/api/post/" + id, { withCredentials: true });
+// export const getPost = async (id) => {
+//     const { data } = await Axios.get(API_URL + "/api/post/" + id, { withCredentials: true });
 
-    return data;
-};
+//     return data;
+// };
 
 export const getMyPosting = async () => {
     const { data } = await Axios.get(API_URL + "/api/post/myposting", { withCredentials: true });

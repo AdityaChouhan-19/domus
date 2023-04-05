@@ -56,8 +56,11 @@ export default function NavBar(props){
           <div className={styles.menuItem} onClick={()=>{redirect('/myposting')}}>My Posting</div>
         </div>
         <div className={styles.loginContainer}>
-          {data?.isAuth ? 
-            <div className={styles.logoutBtn} onClick={onClickLogout}>Logout</div>
+          {data?.isAuth ?
+            <>
+              <div className={styles.userName}>{data?.firstname}</div>
+              <div className={styles.logoutBtn} onClick={onClickLogout}>Logout</div>
+            </> 
           :
           <>
             <div className={styles.loginBtn} onClick={()=>{redirect('/login')}}>Login</div>
