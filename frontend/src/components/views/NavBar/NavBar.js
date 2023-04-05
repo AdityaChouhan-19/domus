@@ -7,6 +7,7 @@ import {API_URL} from './../../../config/config.js';
 import { useQuery, useQueryClient } from 'react-query'
 import { auth } from '../../../api/auth.js';
 
+import Button from '@mui/material/Button';
 
 import styles from './Navbar.module.css';
 
@@ -51,11 +52,20 @@ export default function NavBar(props){
         </div>
         <div className={styles.menuContainer}>
           <div className={styles.menuItem} onClick={()=>{redirect('/')}}>Home</div>
-          <div className={styles.menuItem}>My Profile</div>
-          <div className={styles.menuItem}>Saved</div>
+          <div className={styles.menuItem} onClick={()=>{redirect('/savedposting')}} >Saved</div>
           <div className={styles.menuItem} onClick={()=>{redirect('/myposting')}}>My Posting</div>
+          <div className={styles.menuItem} onClick={()=>{redirect('/myprofile')}}>My Profile</div>
+          {
+            data?.isAdmin ?
+            <>
+              <Button onClick={()=>{redirect('/admin')}}>Admin Page</Button>
+            </>
+            :
+            ""
+          }
         </div>
         <div className={styles.loginContainer}>
+          
           {data?.isAuth ?
             <>
               <div className={styles.userName}>{data?.firstname}</div>

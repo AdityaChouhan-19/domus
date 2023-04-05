@@ -17,6 +17,9 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { MyPostingPage } from './components/views/MyPostingPage/MyPostingPage';
 import { auth } from './api/auth';
 import PostingDetailPage from './components/views/PostingDetailPage/PostingDetailPage';
+import AdminHomePage from './components/views/admin/AdminHomePage/AdminHomePage';
+import SavedPostingPage from './components/views/SavedPostingPage/SavedPostingPage';
+import MyProfilePage from './components/views/MyProfilePage/MyProfilePage';
 
 
 const queryClient = new QueryClient()
@@ -35,9 +38,13 @@ function App() {
             <Route path="/" element={<HomePage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/register" element={<RegisterPage/>} />
+            <Route path="/savedposting" element={<SavedPostingPage/>} />
             <Route path="/myposting" element={<MyPostingPage/>} />
+            <Route path="/myprofile" element={<MyProfilePage/>} />
             <Route path="/createposting" element={<CreatePostingPage/>} />
             <Route path="/post/:id" element={<PostingDetailPage/>} />
+
+            <Route path="/admin" element={<AdminHomePage/>} />
           </Routes>
           <Footer></Footer>
           <ReactQueryDevtools initialIsOpen={false} />
