@@ -52,7 +52,7 @@ export default function CreatePostingPage(){
     }
 
     const onFilesHandler = (event) => {
-        setFiles(event.currentTarget.value)
+        setFiles(event.currentTarget.files)
     }
 
     const onSubmitHandler = async (event) => {
@@ -66,10 +66,7 @@ export default function CreatePostingPage(){
         data.set('file', files[0]);
         console.log(files);
 
-        Axios.post(API_URL + '/api/post', data, { withCredentials: true
-            , headers: {
-            "Content-Type": "multipart/form-data",
-          }, }).then((res) => {
+        Axios.post(API_URL + '/api/post', data, { withCredentials: true }).then((res) => {
             console.log(res.data);
             redirect('/myposting');
         })
@@ -133,7 +130,7 @@ export default function CreatePostingPage(){
                         onChange={onPriceHandler} value={price}
                     />
                     <TextField type="file" id="outlined-basic" label="Photo" variant="outlined"
-                        onChange={onFilesHandler} value={files}
+                        onChange={onFilesHandler}
                     />
 
                     <Button onClick={onSubmitHandler} variant="contained" size="large">

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import {Secret} from '../utils/config.js';
 
 export async function CreatePost(req, res){
-    console.log(req.file);
+    //console.log(req.file);
     console.log('create post called!')
     const {originalname,path} = req.file;
     const parts = originalname.split('.');
@@ -12,10 +12,13 @@ export async function CreatePost(req, res){
     const newPath = path+'.'+ext;
     fs.renameSync(path, newPath);
 
-    const {token} = req.cookies;
-    jwt.verify(token, Secret, {}, async (err,info) => {
+    let token = req.cookies.x_auth;
+    //console.log(token);
+    jwt.verify(token, Secret, async (err,info) => {
         if (err) throw err;
         const {title,summary,content,price,nearBy,distance} = req.body;
+        //console.log('here');
+        //console.log(info);
         const postDoc = await Post.create({
         title,
         summary,
@@ -23,8 +26,8 @@ export async function CreatePost(req, res){
         price,
         nearBy,
         distance,
-        cover:newPath,
-        author:info.id,
+        cover: '/' + newPath,
+        author:info,
         });
         res.json(postDoc);
     });
@@ -76,7 +79,7 @@ export async function GetMyPosts(req, res){
     console.log('myposting called')
     //console.log(req.user);
     res.json(
-        await Post.find()
+        await Post.find({ author: req.user._id })
             .populate('author', ['username'])
             .sort({createdAt: -1})
             .limit(1)
@@ -86,6 +89,7 @@ export async function GetMyPosts(req, res){
 export async function GetPost(req, res){
     const {id} = req.params;
     const postDoc = await Post.findById(id).populate('author', ['username']);
+    console.log('getPost Called');
     console.log(postDoc);
     res.json(postDoc);
 }

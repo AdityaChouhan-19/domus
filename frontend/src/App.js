@@ -16,6 +16,7 @@ import { useQueryClient, QueryClient, QueryClientProvider, useQuery } from 'reac
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { MyPostingPage } from './components/views/MyPostingPage/MyPostingPage';
 import { auth } from './api/auth';
+import PostingDetailPage from './components/views/PostingDetailPage/PostingDetailPage';
 
 
 const queryClient = new QueryClient()
@@ -36,6 +37,7 @@ function App() {
             <Route path="/register" element={<RegisterPage/>} />
             <Route path="/myposting" element={<MyPostingPage/>} />
             <Route path="/createposting" element={<CreatePostingPage/>} />
+            <Route path="/post/:id" element={<PostingDetailPage/>} />
           </Routes>
           <Footer></Footer>
           <ReactQueryDevtools initialIsOpen={false} />
@@ -43,26 +45,26 @@ function App() {
   );
 }
 
-function Example() {
-  const { isLoading, error, data } = useQuery('repoData', () =>
-    Axios.get('https://api.github.com/repos/tannerlinsley/react-query').then(res =>
-      res.data
-    )
-  )
+// function Example() {
+//   const { isLoading, error, data } = useQuery('repoData', () =>
+//     Axios.get('https://api.github.com/repos/tannerlinsley/react-query').then(res =>
+//       res.data
+//     )
+//   )
 
-  if (isLoading) return 'Loading...'
+//   if (isLoading) return 'Loading...'
 
-  if (error) return 'An error has occurred: ' + error.message
+//   if (error) return 'An error has occurred: ' + error.message
 
-  return (
-    <div>
-      <h1>{data.name}</h1>
-      <p>{data.description}</p>
-      <strong>👀 {data.subscribers_count}</strong>{' '}
-      <strong>✨ {data.stargazers_count}</strong>{' '}
-      <strong>🍴 {data.forks_count}</strong>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       <h1>{data.name}</h1>
+//       <p>{data.description}</p>
+//       <strong>👀 {data.subscribers_count}</strong>{' '}
+//       <strong>✨ {data.stargazers_count}</strong>{' '}
+//       <strong>🍴 {data.forks_count}</strong>
+//     </div>
+//   )
+// }
 
 export default App;

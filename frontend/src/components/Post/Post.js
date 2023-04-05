@@ -6,18 +6,28 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import { useNavigate } from 'react-router-dom';
 import styles from './Post.module.css';
+import { API_URL } from '../../config/config';
 
 export const Post = (props) => {
   console.log(props.post)
+  console.log(API_URL + props.post.cover)
+  const redirect = useNavigate();
+  
+  const onClickHandler = ()=>{
+    redirect('/post/' + props.post._id);
+  }
+
   return (
     <>
-        <Card className={styles.postCard} sx={{ maxWidth: 345 }}>
+        <Card onClick={onClickHandler} className={styles.postCard} sx={{ maxWidth: 345 }}>
             <CardMedia
             sx={{ height: 140 }}
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image={API_URL + props.post.cover}
             title="green iguana"
             />
+            
             <CardContent>
             <Typography gutterBottom variant="h5" component="div">
                 {props.post.price}
@@ -27,8 +37,8 @@ export const Post = (props) => {
             </Typography>
             </CardContent>
             <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            {/* <Button size="small">Share</Button> */}
+            {/* <Button size="small">Learn More</Button> */}
             </CardActions>
         </Card>
     </>
