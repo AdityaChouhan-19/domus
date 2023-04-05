@@ -65,6 +65,12 @@
     color: rgb(104, 104, 208);
 }
 
+.userName{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(81, 81, 187);
+}
+
 .logoutBtn{
     font-size: 24px;
     font-weight: bold;

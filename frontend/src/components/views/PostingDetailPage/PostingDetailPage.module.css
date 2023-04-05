@@ -1,0 +1,30 @@
+.detailBox{
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0px 5px 15px rgb(71, 71, 245);
+    display: flex;
+}
+
+.contentBox{
+    width: 80%;
+    border: 1px solid red;
+}
+
+
+.coverImg{
+    width: 96%;
+    height: 80%;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.content{
+    border: 1px solid blue;
+}
+
+
+.locationInfoBox{
+    width: 20%;
+    border: 1px solid green;
+}
+
