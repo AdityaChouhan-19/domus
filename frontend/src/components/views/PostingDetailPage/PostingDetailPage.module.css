@@ -8,14 +8,43 @@
 .contentBox{
     width: 80%;
     border: 1px solid red;
+    position: relative;
 }
 
 
 .coverImg{
-    width: 96%;
+    width: 97%;
     height: 80%;
     margin: 10px;
     border-radius: 10px;
+}
+
+.savedBtn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    color: rgb(211, 61, 61);
+}
+
+.savedBtn:hover{
+    cursor: pointer;
+    color: rgb(249, 67, 67);
+}
+
+.unsavedBtn{
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    width: 40px;
+    height: 40px;
+    color: rgb(211, 61, 61);
+}
+
+.unsavedBtn:hover{
+    cursor: pointer;
+    color: rgb(249, 67, 67);
 }
 
 .content{

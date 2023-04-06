@@ -82,7 +82,7 @@ export async function GetMyPosts(req, res){
         await Post.find({ author: req.user._id })
             .populate('author', ['username'])
             .sort({createdAt: -1})
-            .limit(1)
+            .limit(20)
     );
 }
 
