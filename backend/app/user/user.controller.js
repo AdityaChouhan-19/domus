@@ -1,4 +1,5 @@
 import User from './user.model.js';
+import Post from './../post/post.model.js';
 
 export async function Register(req, res){
     //get information from client
@@ -79,3 +80,45 @@ export async function Logout(req, res){
         })
         })
 }
+
+export async function GetMyInfo(req, res){
+    User.findOne({ _id: req.user._id }, { password: 0 }, (err, user) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).send({
+            user
+        })
+    });
+}
+
+
+
+export async function SavePostingOnOff(req, res){
+    console.log('savedposting called');
+    User.updateOne({ _id: req.user._id }, { savedList: req.body }, (err, result) => {
+        if (err) return res.json({ success: false, err });
+        User.findOne({ _id: req.user._id }, { password: 0 }, (err, user) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).send({
+                user
+            })
+        })
+    })
+        
+}
+
+export async function GetSavedList(req, res){
+    console.log('GetSaveList called');
+    User.findOne({ _id: req.user._id }, { password: 0 }, (err, user) => {
+        if (err) return res.json({ success: false, err });
+        console.log('find savedList called');
+        console.log(user.savedList);
+        Post.find({ _id: { $in: user.savedList } }, (err, result) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).send({
+                result
+            })
+        })
+    });
+}
+
+
