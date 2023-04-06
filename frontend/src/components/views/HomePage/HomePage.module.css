@@ -3,15 +3,60 @@
     
 }
 
-.searchBar{
+.searchContainer{
     padding: 40px;
     background-color:rgb(71, 71, 245);
     margin: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-radius: 10px;
     box-shadow: 0px 5px 10px rgb(187, 186, 186);
+    color: snow;
+}
+
+.searchBar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nearbyBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows {
+  -moz-appearance: textfield;
+}
+
+.searchLabel{
+    font-weight: bold;
+}
+
+.nearBy{
+    width: 200px;
+    font-weight: bold;
+}
+
+.distanceRange{
+    color: snow;
+}
+
+
+.priceRangeBox{
+    display: flex;
+    justify-content: space-around;
+}
+
+.searchBtn{
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
     color: snow;
 }
 

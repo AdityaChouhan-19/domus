@@ -66,12 +66,49 @@ export async function UpdatePost(req, res){
 
 export async function GetPosts(req, res){
     console.log('getPosts called@@@@@@@@')
-    res.json(
-        await Post.find()
-            .populate('author', ['username'])
-            .sort({createdAt: -1})
-            .limit(20)
-    );
+    
+
+    if(req.query.distance == ''){
+        req.query.distance = '0';
+    }
+    if(req.query.minPrice == ''){
+        req.query.minPrice = '0';
+    }
+    if(req.query.maxPrice == ''){
+        req.query.maxPrice = '10000';
+    }
+
+    console.log(req.query);
+
+    const distance = Number(req.query.distance);
+    const minPrice = Number(req.query.minPrice);
+    const maxPrice = Number(req.query.maxPrice);
+    const conditions = {};
+    if (req.query.nearby) {
+        conditions.nearBy = { $regex: req.query.nearby, $options: 'i' };
+    }
+    if (distance) {
+        conditions.distance = { $lte: distance };
+    }
+    if (minPrice) {
+        conditions.price = { $gte: minPrice, $lte: maxPrice };
+    }
+    if (maxPrice) {
+        conditions.price = { $gte: minPrice, $lte: maxPrice };
+    }
+
+    
+    const query = Post.find(conditions).lean();
+    const result = await query.exec();
+
+    //console.log(result);
+    return res.status(200).send(result);
+    // res.json(
+    //     await Post.find()
+    //         .populate('author', ['username'])
+    //         .sort({createdAt: -1})
+    //         .limit(20)
+    // );
 }
 
 export async function GetMyPosts(req, res){
