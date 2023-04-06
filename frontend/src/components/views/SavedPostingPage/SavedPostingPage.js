@@ -21,7 +21,7 @@ export default function SavedPostingPage(){
 
     useEffect(()=>{
         if(!auth?.isAuth) return redirect('/login');
-        console.log('refetched!!!!');
+        //console.log('refetched!!!!');
 
         
         Axios.get(API_URL + "/api/users/savedlist", { withCredentials: true }).then((res) => {
