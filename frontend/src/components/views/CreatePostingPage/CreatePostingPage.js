@@ -56,17 +56,18 @@ export default function CreatePostingPage(){
     }
 
     const onSubmitHandler = async (event) => {
-        const data = new FormData();
-        data.set('nearBy', nearBy);
-        data.set('distance', distance);
-        data.set('title', title);
-        data.set('summary', summary);
-        data.set('content', content);
-        data.set('price', price);
-        data.set('file', files[0]);
+        const newData = new FormData();
+        newData.set('nearBy', nearBy);
+        newData.set('distance', distance);
+        newData.set('title', title);
+        newData.set('summary', summary);
+        newData.set('content', content);
+        newData.set('price', price);
+        newData.set('authorEmail', data.email);
+        newData.set('file', files[0]);
         console.log(files);
 
-        Axios.post(API_URL + '/api/post', data, { withCredentials: true }).then((res) => {
+        Axios.post(API_URL + '/api/post', newData, { withCredentials: true }).then((res) => {
             console.log(res.data);
             redirect('/myposting');
         })

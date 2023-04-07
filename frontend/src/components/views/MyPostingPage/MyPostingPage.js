@@ -15,14 +15,14 @@ export const MyPostingPage = () => {
 
     let postings = () => {<div>Empty</div>};
     
-    const { isLoading, error, data } = useQuery('myPosting', getMyPosting)
+    const { isLoading, error, data, refetch } = useQuery('myPosting', getMyPosting)
     useEffect(()=>{
         if(!auth?.isAuth) return redirect('/login');
         if(data){
           postings = data && data.length > 0 ? data?.map((post) =>
             <>
               {
-                <Post post={post} key={post._id}></Post>
+                <Post refetch={refetch} post={post} key={post._id}></Post>
               }
             </>  
           ) : <div>empty</div>;
@@ -41,7 +41,7 @@ export const MyPostingPage = () => {
       postings = data && data.length > 0 ? data?.map((post) =>
         <>
           {
-            <Post post={post} key={post._id}></Post>
+            <Post refetch={refetch} post={post} key={post._id}></Post>
           }
         </>  
       )

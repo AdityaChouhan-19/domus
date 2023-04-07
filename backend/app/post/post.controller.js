@@ -16,9 +16,9 @@ export async function CreatePost(req, res){
     //console.log(token);
     jwt.verify(token, Secret, async (err,info) => {
         if (err) throw err;
-        const {title,summary,content,price,nearBy,distance} = req.body;
+        const {title,summary,content,price,nearBy,distance,authorEmail} = req.body;
         //console.log('here');
-        //console.log(info);
+        console.log(info);
         const postDoc = await Post.create({
         title,
         summary,
@@ -28,6 +28,7 @@ export async function CreatePost(req, res){
         distance,
         cover: '/' + newPath,
         author:info,
+        authorEmail: authorEmail,
         });
         res.json(postDoc);
     });
@@ -62,6 +63,39 @@ export async function UpdatePost(req, res){
 
         res.json(postDoc);
     });
+}
+
+export async function UpdatePostKeepPhoto(req, res){
+    console.log(req.params.id);
+    let dateString = '';
+
+    const post = await Post.findById(req.params.id);
+    if(post.isSoldOut === 'N'){
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hour = now.getHours().toString().padStart(2, '0');
+        const minute = now.getMinutes().toString().padStart(2, '0');
+        const second = now.getSeconds().toString().padStart(2, '0');
+    
+        dateString = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+    }else{
+        dateString = 'N';
+    }
+ 
+
+    Post.updateOne({ _id: req.params.id }, { isSoldOut: dateString})
+    .then((err, result) => {
+        console.log(res);
+        return res.status(200).send({
+            result
+        })
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
 }
 
 export async function GetPosts(req, res){
@@ -114,7 +148,7 @@ export async function GetPosts(req, res){
 export async function GetMyPosts(req, res){
     //const {userId} = req.user;
     console.log('myposting called')
-    //console.log(req.user);
+    console.log(req.user);
     res.json(
         await Post.find({ author: req.user._id })
             .populate('author', ['username'])
