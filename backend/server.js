@@ -27,7 +27,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import userRouter from './app/user/user.route.js';
 import postRouter from './app/post/post.route.js';
-
+import adminRouter from './app/admin/admin.route.js';
 
 const Port = 4000;
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
@@ -51,7 +51,7 @@ db.on('error', () => console.error('Connection Error'));
 
 app.use('/', userRouter);
 app.use('/', postRouter);
-
+app.use('/', adminRouter);
 
 
 app.listen(Port, () => {

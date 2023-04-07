@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { getPost } from '../../../api/post'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Axios from 'axios'
 import {API_URL} from './../../../config/config.js';
 
@@ -39,6 +39,7 @@ const style = {
   };
 
 export default function PostingDetailPage(){
+    const redirect = useNavigate();
     const client = useQueryClient();
     const auth = client.getQueryData('auth');
 
@@ -52,6 +53,9 @@ export default function PostingDetailPage(){
         Axios.get(API_URL + "/api/post/" + id, { withCredentials: true }).then((response) => {
             console.log(response.data);
             setData(response.data)
+            if(response.data.isSoldOut !== 'N'){
+                redirect('/');
+            }
 
             Axios.get(API_URL + "/api/users/myinfo", { withCredentials: true }).then((res) => {
                 console.log(res.data);
@@ -138,7 +142,7 @@ export default function PostingDetailPage(){
                     <div className={styles.locationInfoBox}>
                         <div>Nearby : {data.nearBy}</div>
                         <div>Distance : {data.distance}km</div>
-                        <Button onClick={handleOpen}>Contact Info</Button>
+                        <Button style={{padding: '5px', marginTop: '40px', width: '80%', backgroundColor: '#4747f5', color: 'snow'}} onClick={handleOpen}>Contact Info</Button>
                     </div>
                 </Box>
                 {/* <Button onClick={handleOpen}>Open modal</Button> */}
