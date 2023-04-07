@@ -10,10 +10,24 @@ const PostSchema = new Schema({
   price:Number,
   photos: [String],
   likes: Number,
-  isSoldOut: String,
-  isReported: String,
+  isSoldOut: {
+      type: String,
+      default: 'N'
+  },
+  isReported: {
+      type: String,
+      default: 'N'
+  },
+  isBanned: {
+      type: String,
+      default: 'N'
+  },
+  comments: {
+      type: [Object]
+  },
   cover:String,
   author:{type:Schema.Types.ObjectId, ref:'User'},
+  authorEmail: {type: String},
 }, {
   timestamps: true,
 });

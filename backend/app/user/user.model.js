@@ -29,6 +29,10 @@ const userSchema = mongoose.Schema({
     },
     image: String,
     institution: String,
+    isBanned: {
+        type: String,
+        default: 'N'
+    },
     savedList: [String],
     token: {
         type: String

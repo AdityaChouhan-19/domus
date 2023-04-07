@@ -6,3 +6,9 @@ export const getSavedList = async () => {
 
     return data;
 };
+
+export const getMyInfo = async () => {
+    const { data } = await Axios.get(API_URL + "/api/users/myinfo", { withCredentials: true });
+
+    return data;
+};

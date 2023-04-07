@@ -44,10 +44,17 @@ export default function LoginPage(){
 
         Axios.post(API_URL + '/api/users/login', body, { withCredentials: true }).then((res) => {
             console.log(res.data)
-            localStorage.setItem('loginInfo', JSON.stringify(res.data));
-            setLoginInfo(res.data.userId);
-            refetch();
-            redirect('/')
+            if(res.data.loginSuccess){
+                localStorage.setItem('loginInfo', JSON.stringify(res.data));
+                setLoginInfo(res.data.userId);
+                refetch();
+                redirect('/')
+            }else{
+                alert(res.data.message);
+            }
+        })
+        .catch((err)=>{
+            alert(err.message);
         })
 
     }
