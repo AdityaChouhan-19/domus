@@ -27,15 +27,14 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    image: String,
-    institution: String,
     isBanned: {
         type: String,
         default: 'N'
     },
     savedList: [String],
     token: {
-        type: String
+        type: String,
+        default: ''
     },
     tokenExp: {
         type: Number

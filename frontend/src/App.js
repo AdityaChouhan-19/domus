@@ -20,6 +20,7 @@ import PostingDetailPage from './components/views/PostingDetailPage/PostingDetai
 import AdminHomePage from './components/views/admin/AdminHomePage/AdminHomePage';
 import SavedPostingPage from './components/views/SavedPostingPage/SavedPostingPage';
 import MyProfilePage from './components/views/MyProfilePage/MyProfilePage';
+import AdminReportedListPage from './components/views/admin/AdminReportedListPage/AdminReportedListPage';
 
 
 const queryClient = new QueryClient()
@@ -45,6 +46,7 @@ function App() {
             <Route path="/post/:id" element={<PostingDetailPage/>} />
 
             <Route path="/admin" element={<AdminHomePage/>} />
+            <Route path="/admin/reportedlist" element={<AdminReportedListPage/>} />
           </Routes>
           <Footer></Footer>
           <ReactQueryDevtools initialIsOpen={false} />
