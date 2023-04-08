@@ -58,7 +58,7 @@ export default function NavBar(props){
           {
             data?.isAdmin ?
             <>
-              <Button onClick={()=>{redirect('/admin')}}>Admin Page</Button>
+              <Button onClick={()=>{redirect('/admin/userlist')}}>Admin Page</Button>
             </>
             :
             ""

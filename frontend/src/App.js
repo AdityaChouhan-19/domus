@@ -17,10 +17,11 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { MyPostingPage } from './components/views/MyPostingPage/MyPostingPage';
 import { auth } from './api/auth';
 import PostingDetailPage from './components/views/PostingDetailPage/PostingDetailPage';
-import AdminHomePage from './components/views/admin/AdminHomePage/AdminHomePage';
+import AdminUserListPage from './components/views/admin/AdminUserListPage/AdminUserListPage';
 import SavedPostingPage from './components/views/SavedPostingPage/SavedPostingPage';
 import MyProfilePage from './components/views/MyProfilePage/MyProfilePage';
 import AdminReportedListPage from './components/views/admin/AdminReportedListPage/AdminReportedListPage';
+import AdminBannedListPage from './components/views/admin/AdminBannedListPage/AdminBannedListPage';
 
 
 const queryClient = new QueryClient()
@@ -45,8 +46,9 @@ function App() {
             <Route path="/createposting" element={<CreatePostingPage/>} />
             <Route path="/post/:id" element={<PostingDetailPage/>} />
 
-            <Route path="/admin" element={<AdminHomePage/>} />
+            <Route path="/admin/userlist" element={<AdminUserListPage/>} />
             <Route path="/admin/reportedlist" element={<AdminReportedListPage/>} />
+            <Route path="/admin/bannedlist" element={<AdminBannedListPage/>} />
           </Routes>
           <Footer></Footer>
           <ReactQueryDevtools initialIsOpen={false} />

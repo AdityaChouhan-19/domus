@@ -130,7 +130,7 @@ export async function GetPosts(req, res){
     if (maxPrice) {
         conditions.price = { $gte: minPrice, $lte: maxPrice };
     }
-
+    conditions.isBanned = { $eq: 'N' }
     
     const query = Post.find(conditions).lean();
     const result = await query.exec();
@@ -150,7 +150,7 @@ export async function GetMyPosts(req, res){
     console.log('myposting called')
     console.log(req.user);
     res.json(
-        await Post.find({ author: req.user._id })
+        await Post.find({ author: req.user._id, isBanned: 'N' })
             .populate('author', ['username'])
             .sort({createdAt: -1})
             .limit(20)
@@ -163,4 +163,25 @@ export async function GetPost(req, res){
     console.log('getPost Called');
     console.log(postDoc);
     res.json(postDoc);
+}
+
+
+
+
+
+export async function UpdatePostReportStatus(req, res){
+    console.log(req.params.id);
+    console.log(req.user._id);
+
+    Post.updateOne({ _id: req.params.id }, { isReported: req.user._id})
+    .then((err, result) => {
+        console.log(res);
+        return res.status(200).send({
+            result
+        })
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
 }

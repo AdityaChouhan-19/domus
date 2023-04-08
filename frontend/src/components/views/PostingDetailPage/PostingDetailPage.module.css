@@ -47,6 +47,23 @@
     color: rgb(249, 67, 67);
 }
 
+
+.reportBtn{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    color: rgb(211, 61, 61);
+}
+
+.reportBtn:hover{
+    cursor: pointer;
+    color: rgb(249, 67, 67);
+}
+
+
+
 .content{
     border: 1px solid blue;
 }

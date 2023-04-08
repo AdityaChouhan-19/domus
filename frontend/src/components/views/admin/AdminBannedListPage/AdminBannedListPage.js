@@ -6,17 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 
-import styles from './AdminReportedListPage.module.css';
-import { getReportedPostings } from '../../../../api/admin';
+import styles from './AdminBannedListPage.module.css';
+import { getBannedPostings } from '../../../../api/admin';
 import { Post } from '../../../Post/Post';
 
-export default function AdminReportedListPage(){
+export default function AdminBannedListPage(){
     const client = useQueryClient();
     const auth = client.getQueryData('auth');
 
     const redirect = useNavigate();
 
-    const { isLoading, error, data, refetch } = useQuery('reportedPostings', getReportedPostings);
+    const { isLoading, error, data, refetch } = useQuery('bannedPostings', getBannedPostings);
 
 
     useEffect(()=>{
@@ -40,7 +40,7 @@ export default function AdminReportedListPage(){
             <Button onClick={()=>{redirect('/admin/reportedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Reported Postings</Button>
             <Button onClick={()=>{redirect('/admin/bannedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Banned Postings</Button>
         </div>
-        <h1>Reported Postings</h1>
+        <h1>Banned Postings</h1>
         <div className={styles.postingsContainer}>
             {
                 data && postings
