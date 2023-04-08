@@ -6,7 +6,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
-import styles from './AdminHomePage.module.css';
+import styles from './AdminUserListPage.module.css';
 import { getUsers } from '../../../../api/admin';
 import { Button } from '@mui/material';
 
@@ -131,8 +131,9 @@ export default function AdminHomePage(){
     return (
         <>
             <div className={styles.searchContainer}>
-                <Button onClick={()=>{redirect('/admin')}} style={{color: 'blue', backgroundColor: 'snow'}}>Home</Button>
-                <Button onClick={()=>{redirect('/admin/reportedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Reported Posting</Button>
+                <Button onClick={()=>{redirect('/admin/userlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>User List</Button>
+                <Button onClick={()=>{redirect('/admin/reportedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Reported Postings</Button>
+                <Button onClick={()=>{redirect('/admin/bannedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Banned Postings</Button>
             </div>
             <Box className={styles.usersBox} sx={{ height: 400, width: '60%' }}>
                 <DataGrid

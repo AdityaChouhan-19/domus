@@ -24,6 +24,9 @@ export const Post = (props) => {
   const redirect = useNavigate();
   
   const onClickHandler = (event)=>{
+    if(event.target.id !== 'soldOutBtn' && data.isAdmin === true){
+      redirect('/post/' + props.post._id);
+    }
     if(event.target.id === 'soldOutBtn' || props.post.isSoldOut !== 'N'){
       return
     }

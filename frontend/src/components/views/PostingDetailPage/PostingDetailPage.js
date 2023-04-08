@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ReportIcon from '@mui/icons-material/Report';
 
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -53,7 +54,7 @@ export default function PostingDetailPage(){
         Axios.get(API_URL + "/api/post/" + id, { withCredentials: true }).then((response) => {
             console.log(response.data);
             setData(response.data)
-            if(response.data.isSoldOut !== 'N'){
+            if(response.data.isSoldOut !== 'N' && auth.isAdmin === false){
                 redirect('/');
             }
 
@@ -111,6 +112,39 @@ export default function PostingDetailPage(){
             setSavedBtnToggle(false);
         });
     }
+
+    const onClickReportBtnOnHandler = async () => {
+        if(!auth.isAuth){
+            return alert('Please Login to Save It');
+        }
+        try{
+            Axios.put(`${API_URL}/api/post/report/${data._id}`,{}, { withCredentials: true }).then((res) => {
+                console.log(res.data);
+                alert('This posting has been reported!');
+            });   
+        }catch(err){
+            alert(err.message);
+        }
+    }
+
+    const onClickReleaseBtn = async () => {
+        Axios.put(`${API_URL}/api/admin/releaseposting/${data._id}`,{}, { withCredentials: true }).then((res)=>{
+            console.log(res.data);
+            alert('This posting has been released!');
+            redirect(-1);
+        });
+
+    }
+
+    const onClickBanBtn = async () => {
+        Axios.put(`${API_URL}/api/admin/banposting/${data._id}`,{}, { withCredentials: true }).then((res)=>{
+            console.log(res.data);
+            alert('This posting has been banned!');
+            redirect(-1);
+        });
+    }
+
+
     
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -124,6 +158,7 @@ export default function PostingDetailPage(){
                 <Box sx={{ bgcolor: 'snow', height: '75vh' }} className={styles.detailBox}>
                     <div className={styles.contentBox}>
                         <img className={styles.coverImg} src={API_URL + data.cover} ></img>
+                        <ReportIcon onClick={onClickReportBtnOnHandler} className={styles.reportBtn}/>
 
                         {
                             savedBtnToggle ? 
@@ -143,6 +178,15 @@ export default function PostingDetailPage(){
                         <div>Nearby : {data.nearBy}</div>
                         <div>Distance : {data.distance}km</div>
                         <Button style={{padding: '5px', marginTop: '40px', width: '80%', backgroundColor: '#4747f5', color: 'snow'}} onClick={handleOpen}>Contact Info</Button>
+                        {
+                            auth?.isAdmin ? 
+                            <>
+                                <Button onClick={onClickBanBtn}>Ban</Button>
+                                <Button onClick={onClickReleaseBtn}>Release</Button>
+                            </>
+                            :
+                            <></>
+                        }
                     </div>
                 </Box>
                 {/* <Button onClick={handleOpen}>Open modal</Button> */}

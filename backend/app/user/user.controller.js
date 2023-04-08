@@ -112,7 +112,7 @@ export async function GetSavedList(req, res){
         if (err) return res.json({ success: false, err });
         console.log('find savedList called');
         console.log(user.savedList);
-        Post.find({ _id: { $in: user.savedList } }, (err, result) => {
+        Post.find({ _id: { $in: user.savedList }, isBanned: 'N' }, (err, result) => {
             if (err) return res.json({ success: false, err });
             return res.status(200).send({
                 result
