@@ -1,11 +1,14 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios'
-import { useDispatch, useSelector } from "react-redux"
-import { loginUser } from "./../../../store/store.js";
+
 import { API_URL } from '../../../config/config.js';
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
 import { auth } from '../../../api/auth.js';
 
 import Box from '@mui/material/Box';
@@ -93,7 +96,7 @@ export default function RegisterPage(){
       }
 
       await Axios.post(API_URL + '/api/users/register', body, { withCredentials: true }).then((res) => {
-          console.log(res.data)
+          
           return redirect('/login')
       })
       .catch((err)=>{

@@ -1,5 +1,9 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useEffect, useState } from 'react'
-import { auth } from '../../../api/auth'
 import { useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../../config/config';
@@ -15,9 +19,7 @@ export default function MyProfilePage(){
 
     useEffect(()=>{
         Axios.get(API_URL + "/api/users/myinfo", { withCredentials: true }).then((res) => {
-            console.log(res.data);
             setMyInfo(res.data)
-
         });
     }, [])
 

@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
@@ -63,7 +68,6 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.comparePassword = function (plainPassword, cb) {
 
-    //plainPassword 1234567    encrypted $2b$10$l492vQ0M4s9YUBfwYkkaZOgWHExahjWC
     bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
@@ -72,7 +76,6 @@ userSchema.methods.comparePassword = function (plainPassword, cb) {
 
 userSchema.methods.generateToken = function (cb) {
     var user = this;
-    // console.log('user._id', user._id)
 
     // generate token using jsonwebtoken 
     var token = jwt.sign(user._id.toHexString(), Secret)

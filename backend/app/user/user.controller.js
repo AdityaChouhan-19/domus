@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import User from './user.model.js';
 import Post from './../post/post.model.js';
 
@@ -16,23 +21,27 @@ export async function Register(req, res){
 }
 
 export async function Login(req, res){
-    // console.log('ping')
+
     //checking if there is same email in db.
     User.findOne({ email: req.body.email }, (err, user) => {
-        
-        // console.log('user', user)
+
         if (!user) {
-        return res.json({
-            loginSuccess: false,
-            message: "Can't fine the user."
-        })
+            return res.json({
+                loginSuccess: false,
+                message: "Can't fine the user."
+            })
+        }
+
+        if(user.isBanned !== 'N'){
+            return res.json({
+                loginSuccess: false,
+                message: "Your account has been suspended."
+            })
         }
 
         //if there is email matched in db, check password.
         user.comparePassword(req.body.password, (err, isMatch) => {
-        // console.log('err',err)
 
-        // console.log('isMatch',isMatch)
 
         if (!isMatch)
             return res.json({ loginSuccess: false, message: "Wrong password." })
@@ -70,7 +79,7 @@ export async function Auth(req, res){
 
 
 export async function Logout(req, res){
-    // console.log('req.user', req.user)
+
     User.findOneAndUpdate({ _id: req.user._id },
         { token: "" }
         , (err, user) => {
@@ -93,7 +102,6 @@ export async function GetMyInfo(req, res){
 
 
 export async function SavePostingOnOff(req, res){
-    console.log('savedposting called');
     User.updateOne({ _id: req.user._id }, { savedList: req.body }, (err, result) => {
         if (err) return res.json({ success: false, err });
         User.findOne({ _id: req.user._id }, { password: 0 }, (err, user) => {
@@ -107,11 +115,9 @@ export async function SavePostingOnOff(req, res){
 }
 
 export async function GetSavedList(req, res){
-    console.log('GetSaveList called');
     User.findOne({ _id: req.user._id }, { password: 0 }, (err, user) => {
         if (err) return res.json({ success: false, err });
-        console.log('find savedList called');
-        console.log(user.savedList);
+
         Post.find({ _id: { $in: user.savedList }, isBanned: 'N' }, (err, result) => {
             if (err) return res.json({ success: false, err });
             return res.status(200).send({

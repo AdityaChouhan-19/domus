@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import mongoose from 'mongoose';
 const {Schema,model} = mongoose;
 
@@ -35,4 +40,3 @@ const PostSchema = new Schema({
 const Post = model('Post', PostSchema);
 
 export default Post;
-//module.exports = Post;

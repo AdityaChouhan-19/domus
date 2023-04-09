@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useState } from 'react'
 
 import { useQuery } from 'react-query'
@@ -65,21 +70,13 @@ export default function CreatePostingPage(){
         newData.set('price', price);
         newData.set('authorEmail', data.email);
         newData.set('file', files[0]);
-        console.log(files);
+
 
         Axios.post(API_URL + '/api/post', newData, { withCredentials: true }).then((res) => {
-            console.log(res.data);
+
             redirect('/myposting');
         })
         
-        // const response = await fetch('http://localhost:4000/api/post', {
-        // method: 'POST',
-        // body: data,
-        // credentials: 'include',
-        // });
-        // if (response.ok) {
-        //     redirect('/myposting');
-        // }
     }
     
 

@@ -1,10 +1,14 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useEffect } from 'react'
 import { useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 
-import { Button } from '@mui/material';
-
+import AdminNavBar from '../AdminNavBar/AdminNavBar.js';
 
 import styles from './AdminBannedListPage.module.css';
 import { getBannedPostings } from '../../../../api/admin';
@@ -21,7 +25,6 @@ export default function AdminBannedListPage(){
 
     useEffect(()=>{
         if(!auth?.isAuth || !auth?.isAdmin) return redirect('/')
-        console.log(data);
 
     })
 
@@ -35,11 +38,7 @@ export default function AdminBannedListPage(){
 
   return (
     <>
-        <div className={styles.searchContainer}>
-            <Button onClick={()=>{redirect('/admin/userlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>User List</Button>
-            <Button onClick={()=>{redirect('/admin/reportedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Reported Postings</Button>
-            <Button onClick={()=>{redirect('/admin/bannedlist')}} style={{color: 'blue', backgroundColor: 'snow'}}>Banned Postings</Button>
-        </div>
+        <AdminNavBar></AdminNavBar>
         <h1>Banned Postings</h1>
         <div className={styles.postingsContainer}>
             {

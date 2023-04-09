@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
-//import { auth, fetchUserData } from "./../../../store/store.js";
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
+import React, { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+
 import Axios from 'axios'
 import {API_URL} from './../../../config/config.js';
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
 import { auth } from '../../../api/auth.js';
 
 import Button from '@mui/material/Button';
@@ -30,7 +34,7 @@ export default function NavBar(props){
 
     try{
       Axios.get(API_URL + '/api/users/logout', { withCredentials: true }).then((res) => {
-        console.log(res.data)
+ 
         redirect('/login');
       })
     }catch(e){

@@ -1,6 +1,11 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useEffect, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
-import { getPost } from '../../../api/post'
+import { useQueryClient } from 'react-query'
+
 import { useNavigate, useParams } from 'react-router-dom';
 import Axios from 'axios'
 import {API_URL} from './../../../config/config.js';
@@ -19,13 +24,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import styles from './PostingDetailPage.module.css';
-import ContactCard from '../../ContactCard/ContactCard';
 
-// const getPost = async (id) => {
-//     const { data } = await Axios.get(API_URL + "/api/post/" + id, { withCredentials: true });
-
-//     return data;
-// };
 
 const style = {
     position: 'absolute',
@@ -60,25 +59,23 @@ export default function PostingDetailPage(){
 
     useEffect(()=>{
         Axios.get(API_URL + "/api/post/" + id, { withCredentials: true }).then((response) => {
-            console.log(response.data);
+            
             setData(response.data)
             if(response.data.isSoldOut !== 'N' && auth.isAdmin === false){
                 redirect('/');
             }
 
             Axios.get(API_URL + "/api/users/myinfo", { withCredentials: true }).then((res) => {
-                console.log(res.data);
+                
                 setMyInfo(res.data)
     
                 if(res.data?.user?.savedList?.includes(response.data?._id)){
-                    //console.log('readdd');
+                    
                     setSavedBtnToggle(true);
-                    // console.log(myInfo)
-                    // console.log(savedBtnToggle);
+
                 }else{
                     setSavedBtnToggle(false);
-                    // console.log(myInfo)
-                    // console.log(savedBtnToggle);
+                    
                 }
             });
         });
@@ -95,7 +92,7 @@ export default function PostingDetailPage(){
         let copy = {...myInfo};
         copy.user.savedList.push(data._id)
         Axios.put(API_URL + "/api/users/savepostingonoff", copy.user.savedList, { withCredentials: true }).then((res) => {
-            console.log(res.data);
+            
             setMyInfo(res.data)
             setSavedBtnToggle(true);
         });
@@ -106,16 +103,15 @@ export default function PostingDetailPage(){
             return alert('Please Login to Save It');
         }
         let copy = {...myInfo};
-        console.log('save btn off')
-        console.log(copy.user)
+        
         const index = copy.user.savedList.indexOf(data._id);
 
         if (index > -1) {
             copy.user.savedList.splice(index, 1);
         }
-        console.log(copy.user.savedList);
+        
         Axios.put(API_URL + "/api/users/savepostingonoff", copy.user.savedList, { withCredentials: true }).then((res) => {
-            console.log(res.data);
+            
             setMyInfo(res.data)
             setSavedBtnToggle(false);
         });
@@ -127,7 +123,7 @@ export default function PostingDetailPage(){
         }
         try{
             Axios.put(`${API_URL}/api/post/report/${data._id}`,{}, { withCredentials: true }).then((res) => {
-                console.log(res.data);
+                
                 alert('This posting has been reported!');
             });   
         }catch(err){
@@ -137,18 +133,18 @@ export default function PostingDetailPage(){
 
     const onClickReleaseBtn = async () => {
         Axios.put(`${API_URL}/api/admin/releaseposting/${data._id}`,{}, { withCredentials: true }).then((res)=>{
-            console.log(res.data);
+            
             alert('This posting has been released!');
-            redirect(-1);
+            redirect('/admin/reportedlist');
         });
 
     }
 
     const onClickBanBtn = async () => {
         Axios.put(`${API_URL}/api/admin/banposting/${data._id}`,{}, { withCredentials: true }).then((res)=>{
-            console.log(res.data);
+            
             alert('This posting has been banned!');
-            redirect(-1);
+            redirect('/admin/reportedlist');
         });
     }
 
@@ -166,11 +162,10 @@ export default function PostingDetailPage(){
             content: comment
         }
         Axios.put(`${API_URL}/api/post/comment/${data._id}`,body, { withCredentials: true }).then((res)=>{
-            console.log(res.data);
+            
             setComment('');
             setCommentRefetch(!commentRefetch);
-            //alert('This posting has been banned!');
-            //redirect(-1);
+            
         });
     }
 
@@ -206,8 +201,7 @@ export default function PostingDetailPage(){
                             :
                             <FavoriteBorderIcon onClick={onClickSavedBtnOnHandler} className={styles.savedBtn}/>
                         }
-                        {/* <FavoriteIcon onClick={onClickSavedBtnOffHandler} className={styles.unsavedBtn}/>
-                        <FavoriteBorderIcon onClick={onClickSavedBtnOnHandler} className={styles.savedBtn}/> */}
+                        
                         <div className={styles.content}>
                             <div>Price : ${data.price}</div>
                             <div>Summary : {data.summary}</div>
@@ -238,7 +232,7 @@ export default function PostingDetailPage(){
                         data && commentList
                     }
                 </div>
-                {/* <Button onClick={handleOpen}>Open modal</Button> */}
+                
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"

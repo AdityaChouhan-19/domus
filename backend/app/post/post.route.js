@@ -1,22 +1,13 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import { Router } from "express";
 import { CreatePost, GetMyPosts, GetPost, GetPosts, UpdatePost, UpdatePostComment, UpdatePostKeepPhoto, UpdatePostReportStatus } from "./post.controller.js";
 import auth from "../middleware/auth.js";
 import multer from 'multer';
 const upload = multer({ dest: 'uploads/' });
-
-
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'uploads/');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   }
-// });
-
-// const upload = multer({ storage: storage });
-
 
 
 const router = Router();
