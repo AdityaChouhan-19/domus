@@ -11,7 +11,12 @@ export async function getUsers(req, res){
         return res.send({success: false, message: 'You are not admin user'});
     }
 
-    User.find({}, { password: 0, savedList: 0 }, (err, users) => {
+    let searchInfo = {};
+    if(req.query.searchEmail !== ''){
+        searchInfo.email = { $regex: req.query.searchEmail, $options: "i" };
+    }
+
+    User.find(searchInfo, { password: 0, savedList: 0 }, (err, users) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).send(users);
     });

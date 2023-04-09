@@ -14,11 +14,30 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 
 
+.adminSearchBarContainer{
+    background-color: rgb(71, 71, 245);
+    padding: 20px;
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid rgb(100, 100, 237);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgb(187, 186, 186);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
 .userContainerHeader{
     width: 1000px;
     border: 1px solid black;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px;
+    box-shadow: 0px 5px 15px rgb(187, 186, 186);
     margin: auto;
     padding: 10px;
     margin-bottom: 20px;
@@ -41,7 +60,7 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 .userListContainer{
     width: 1000px;
-    border: 1px solid black;
+    border: 1px solid rgb(71, 71, 245);
     border-radius: 10px;
     box-shadow: 0px 5px 15px;
     margin: auto;
