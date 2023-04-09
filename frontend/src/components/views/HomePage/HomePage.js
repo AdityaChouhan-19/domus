@@ -101,7 +101,7 @@ export default function HomePage(){
       <div className={styles.searchContainer}>
         <div className={styles.searchBar}>
           <Box className={styles.nearbyBox} sx={{ width: 200 }}>
-            <InputLabel className={styles.searchLabel} id="nearby">Near By</InputLabel>
+            <InputLabel style={{color: 'snow'}} className={styles.searchLabel} id="nearby">Near By</InputLabel>
             <Select
             labelId="nearby"
             id="nearby"
@@ -109,18 +109,19 @@ export default function HomePage(){
             value={nearBy}
             label="Near By"
             onChange={onNearByHandler}
+            style={{marginBottom: '10px', border: '1px solid snow'}}
             >
                 <MenuItem value={'Centennial College'}>Centennial College</MenuItem>
                 <MenuItem value={'Seneca College'}>Seneca College</MenuItem>
                 <MenuItem value={'Humber College'}>Humber College</MenuItem>
             </Select>
-            <TextField onChange={onDistanceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="Distance" variant="outlined" />
+            <TextField style={{border: '1px solid snow', borderRadius: '5px'}} onChange={onDistanceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="Distance" variant="outlined" />
           </Box>
           <Box className={styles.priceRangeBox}>
-            <TextField onChange={onMinPriceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="MIN" variant="outlined" />
-            <TextField onChange={onMaxPriceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="MAX" variant="outlined" />
+            <TextField style={{border: '1px solid snow', borderRadius: '5px', marginRight: '10px'}} onChange={onMinPriceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="MIN" variant="outlined" />
+            <TextField style={{border: '1px solid snow', borderRadius: '5px'}} onChange={onMaxPriceHandler} min="0" className="no-arrows" type="number" id="outlined-basic" label="MAX" variant="outlined" />
           </Box>
-          <Button onClick={onClickSearchBtnHandler} className={styles.searchBtn} variant="contained">Search</Button>
+          <Button style={{color: '#4747f5', backgroundColor: 'snow', borderRadius: '5px'}} onClick={onClickSearchBtnHandler} className={styles.searchBtn} variant="contained">Search</Button>
         </div>
       </div>
       <div className={styles.postingsContainer}>

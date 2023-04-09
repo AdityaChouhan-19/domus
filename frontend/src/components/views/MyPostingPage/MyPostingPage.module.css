@@ -5,7 +5,8 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 .postingsContainer{
     display: flex;
-    
+    min-height: 545px;
+    flex-wrap: wrap;
 }
 
 .newBtn{

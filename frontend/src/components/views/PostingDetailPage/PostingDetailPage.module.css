@@ -3,6 +3,10 @@ Created By: Yun Ki Jung
 Modified By: Yun Ki Jung, Apr/09/2023
 */
 
+.postingDetailContainer{
+    min-height: 425px;
+}
+
 .detailBox{
     border-radius: 10px;
     margin-top: 30px;
@@ -12,7 +16,6 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 .contentBox{
     width: 80%;
-    border: 1px solid red;
     position: relative;
 }
 
@@ -70,13 +73,16 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 
 .content{
-    border: 1px solid blue;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 
 .locationInfoBox{
     width: 20%;
-    border: 1px solid green;
+    padding-top: 20px;
+    font-weight: bold;
 }
 
 
@@ -86,7 +92,6 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 .commentBox{
     width: 100%;
-    border: 1px solid red;
     margin-top: 40px;
     display: flex;
     justify-content: space-around;

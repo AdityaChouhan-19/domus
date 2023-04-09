@@ -71,7 +71,7 @@ export default function LoginPage(){
         <>
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '80vh'
+            , width: '100%', height: '70vh'
         }}>
             <Box
             component="form"

@@ -14,4 +14,6 @@ Modified By: Yun Ki Jung, Apr/09/2023
 
 .postingsContainer{
     display: flex;
+    min-height: 445px;
+    flex-wrap: wrap;
 }

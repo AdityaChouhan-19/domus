@@ -1,3 +1,22 @@
 /*
 Created By: Yun Ki Jung, Apr/09/2023
 */
+
+.myProfileContainer{
+    display: flex;
+    align-items: center;
+    min-height: 625px;
+}
+
+.infoCard{
+    width: 400px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 5px 12px #4747f5;
+    padding: 40px 20px;
+}
+
+.infoCard > div{
+    margin: 15px;
+}

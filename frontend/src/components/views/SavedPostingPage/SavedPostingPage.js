@@ -45,14 +45,15 @@ export default function SavedPostingPage(){
             }
             </>  
         )
-        : <div>empty</div>;
+        : <div></div>;
     }
 
 
     return (
         <>
+            <h1>Saved List</h1>
             <div className={styles.postingsContainer}>
-                {savedList ? postings : 'empty'}
+                {savedList ? postings : ''}
             </div>
         </>
     )
