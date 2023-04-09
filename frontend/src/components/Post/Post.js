@@ -69,7 +69,7 @@ export const Post = (props) => {
             {/* <Button size="small">Share</Button> */}
             {
               data?.isAuth && data?._id === props.post.author._id && props.post.isSoldOut === 'N' ?
-              <Button onClick={onClickSoldOutBtn} id="soldOutBtn" size="small">Sold Out</Button>
+              <Button onClick={onClickSoldOutBtn} id="soldOutBtn" size="small">Close</Button>
               :
               <></>
             }

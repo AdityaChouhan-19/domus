@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreatePost, GetMyPosts, GetPost, GetPosts, UpdatePost, UpdatePostKeepPhoto, UpdatePostReportStatus } from "./post.controller.js";
+import { CreatePost, GetMyPosts, GetPost, GetPosts, UpdatePost, UpdatePostComment, UpdatePostKeepPhoto, UpdatePostReportStatus } from "./post.controller.js";
 import auth from "../middleware/auth.js";
 import multer from 'multer';
 const upload = multer({ dest: 'uploads/' });
@@ -34,5 +34,7 @@ router.get('/api/post/myposting', auth, GetMyPosts);
 router.get('/api/post/:id', GetPost);
 
 router.put('/api/post/report/:id',auth, UpdatePostReportStatus);
+
+router.put('/api/post/comment/:id', auth, UpdatePostComment);
 
 export default router;

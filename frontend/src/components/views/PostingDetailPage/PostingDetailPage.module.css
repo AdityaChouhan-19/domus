@@ -74,3 +74,28 @@
     border: 1px solid green;
 }
 
+
+
+
+
+
+.commentBox{
+    width: 100%;
+    border: 1px solid red;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.commentInput{
+    width: 70%;
+    font-size: 28px;
+    border-radius: 10px;
+}
+
+.commentBtn{
+    width: 10%;
+    background-color: rgb(79, 216, 193);
+}
+
