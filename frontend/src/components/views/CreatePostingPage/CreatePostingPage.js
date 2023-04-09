@@ -61,6 +61,29 @@ export default function CreatePostingPage(){
     }
 
     const onSubmitHandler = async (event) => {
+
+        if(nearBy === ''){
+            return
+        }
+        if(distance <= 0){
+            return
+        }
+        if(title === ''){
+            return
+        }
+        if(summary === ''){
+            return
+        }
+        if(content === ''){
+            return
+        }
+        if(price <= 0){
+            return
+        }
+        if(files === '' || files === null){
+            return
+        }
+
         const newData = new FormData();
         newData.set('nearBy', nearBy);
         newData.set('distance', distance);
@@ -75,6 +98,9 @@ export default function CreatePostingPage(){
         Axios.post(API_URL + '/api/post', newData, { withCredentials: true }).then((res) => {
 
             redirect('/myposting');
+        })
+        .catch((err)=>{
+            console.log(err);
         })
         
     }
