@@ -29,7 +29,7 @@ export const MyPostingPage = () => {
                 <Post refetch={refetch} post={post} key={post._id}></Post>
               }
             </>  
-          ) : <div>empty</div>;
+          ) : <div></div>;
         }
     }, [auth, data])
 
@@ -48,12 +48,13 @@ export const MyPostingPage = () => {
           }
         </>  
       )
-      : <div>empty</div>;
+      : <div></div>;
     }
 
   return (
     <>
-      <Button className={styles.newBtn} variant="contained" onClick={()=>{redirect('/createposting')}}>New</Button>
+      <h1>My Posting</h1>
+      <Button style={{marginTop: '20px', marginLeft: '25px'}} className={styles.newBtn} variant="contained" onClick={()=>{redirect('/createposting')}}>New</Button>
       <div className={styles.postingsContainer}>
         {data ? postings : ''}
       </div>

@@ -155,11 +155,18 @@ export default function PostingDetailPage(){
         if(!auth.isAuth){
             return alert('Please Login to Write It');
         }
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day}`;
+        
         
         let body = {
             writerId: auth._id,
             writerName: auth.firstname,
-            content: comment
+            content: comment,
+            time: currentDate
         }
         Axios.put(`${API_URL}/api/post/comment/${data._id}`,body, { withCredentials: true }).then((res)=>{
             
@@ -178,8 +185,16 @@ export default function PostingDetailPage(){
     const commentList = data?.comments?.map((comment) =>
         <>
         {
-            <div>
+            <div style={{border: '1px solid blue'
+            , padding: '10px'
+            , paddingLeft: '50px'
+            , borderRadius: '10px'
+            , margin: '10px'
+            , boxShadow: '0px 3px 10px blue'
+            , marginBottom: '20px'
+            }}>
                 <div>{comment.writerName} : {comment.content}</div>
+                <div>{comment.time}</div>
             </div>
         }
         </>  
@@ -189,17 +204,17 @@ export default function PostingDetailPage(){
     return (
         <>
             <CssBaseline />
-            <Container maxWidth="md">
+            <Container className={styles.postingDetailContainer} maxWidth="md">
                 <Box sx={{ bgcolor: 'snow', height: '75vh' }} className={styles.detailBox}>
                     <div className={styles.contentBox}>
                         <img className={styles.coverImg} src={API_URL + data.cover} ></img>
-                        <ReportIcon onClick={onClickReportBtnOnHandler} className={styles.reportBtn}/>
+                        <ReportIcon onClick={onClickReportBtnOnHandler} className={styles.reportBtn} style={{width: '40px', height: '40px'}}/>
 
                         {
                             savedBtnToggle ? 
-                            <FavoriteIcon onClick={onClickSavedBtnOffHandler} className={styles.savedBtn}/>
+                            <FavoriteIcon onClick={onClickSavedBtnOffHandler} className={styles.savedBtn} style={{width: '40px', height: '40px'}}/>
                             :
-                            <FavoriteBorderIcon onClick={onClickSavedBtnOnHandler} className={styles.savedBtn}/>
+                            <FavoriteBorderIcon onClick={onClickSavedBtnOnHandler} className={styles.savedBtn} style={{width: '40px', height: '40px'}}/>
                         }
                         
                         <div className={styles.content}>
@@ -215,8 +230,8 @@ export default function PostingDetailPage(){
                         {
                             auth?.isAdmin ? 
                             <>
-                                <Button onClick={onClickBanBtn}>Ban</Button>
-                                <Button onClick={onClickReleaseBtn}>Release</Button>
+                                <Button style={{marginRight: '5px', marginTop: '40px', backgroundColor: '#FC2947', color: 'snow'}} onClick={onClickBanBtn}>Ban</Button>
+                                <Button style={{marginTop: '40px', backgroundColor: '#27E1C1', color: 'snow'}} onClick={onClickReleaseBtn}>Release</Button>
                             </>
                             :
                             <></>
@@ -225,7 +240,7 @@ export default function PostingDetailPage(){
                 </Box>
                 <div className={styles.commentBox}>
                     <input onChange={onChangeComment} value={comment} className={styles.commentInput} type='text'></input>
-                    <Button onClick={onClickCommentBtn} className={styles.commentBtn}>Enter</Button>
+                    <Button onClick={onClickCommentBtn} style={{border: '1px solid blue'}} className={styles.commentBtn}>Enter</Button>
                 </div>
                 <div>
                     {

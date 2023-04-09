@@ -11,7 +11,6 @@ Modified By: Yun Ki Jung, Apr/09/2023
 }
 
 .formTag{
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     margin-top: 40px;

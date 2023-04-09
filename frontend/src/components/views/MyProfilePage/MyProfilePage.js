@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { API_URL } from '../../../config/config';
 import Axios from 'axios';
 
+import styles from './MyProfilePage.module.css';
+
 export default function MyProfilePage(){
     const client = useQueryClient();
     const auth = client.getQueryData('auth');
@@ -32,10 +34,12 @@ export default function MyProfilePage(){
     if(!auth.isAuth) return redirect('/login')
 
     return (
-        <>
-            <h1>{myInfo?.user?.email}</h1>
-            <div>{myInfo?.user?.firstname}</div>
-            <div>{myInfo?.user?.lastname}</div>
-        </>
+        <div className={styles.myProfileContainer}>
+            <div className={styles.infoCard}>
+                <div>Email : {myInfo?.user?.email}</div>
+                <div>First Name : {myInfo?.user?.firstname}</div>
+                <div>Last Name : {myInfo?.user?.lastname}</div>
+            </div>
+        </div>
     )
 }
