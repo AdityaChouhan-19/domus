@@ -54,7 +54,7 @@ export const Post = (props) => {
     <>
         <Card onClick={onClickHandler} style={style} className={styles.postCard} sx={{ maxWidth: 345 }}>
             <CardMedia
-            sx={{ height: 140 }}
+            sx={{ height: 180 }}
             image={API_URL + props.post.cover}
             title="green iguana"
             />
@@ -64,7 +64,7 @@ export const Post = (props) => {
                 {props.post.price}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                {props.post.summary}
+                {props.post.title}
             </Typography>
             </CardContent>
             <CardActions>

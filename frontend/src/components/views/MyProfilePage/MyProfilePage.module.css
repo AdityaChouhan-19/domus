@@ -5,7 +5,7 @@ Created By: Yun Ki Jung, Apr/09/2023
 .myProfileContainer{
     display: flex;
     align-items: center;
-    min-height: 625px;
+    min-height: 645px;
 }
 
 .infoCard{

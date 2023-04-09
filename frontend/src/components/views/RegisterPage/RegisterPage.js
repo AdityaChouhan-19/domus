@@ -53,20 +53,25 @@ export default function RegisterPage(){
 
   const onSubmitHandler = async (event) => {
       event.preventDefault();
+      const re = /\S+@\S+\.\S+/;
+
+      if(Email === "" || Email === null){
+        setEmailErrorMsg("Email must be filled in.")
+        return
+      }else if(!re.test(Email)){
+        setEmailErrorMsg("Incorrect format.")
+        return
+      }else{
+        setEmailErrorMsg("");
+      }
+      
       if(Password !== CheckPassword) {
         setCheckPasswordErrorMsg("Check your password");
         return
       }else{
         setCheckPasswordErrorMsg("");
       }
-
-      if(Email === "" || Email === null){
-        setEmailErrorMsg("Email must be filled in.")
-        return
-      }else{
-        setEmailErrorMsg("");
-      }
-
+      
       if(Password === "" || Password === null || Password.length < 8){
         setPasswordErrorMsg("Password must be filled in.")
         return

@@ -70,6 +70,20 @@ Modified By: Yun Ki Jung, Apr/09/2023
     color: rgb(249, 67, 67);
 }
 
+.editBtn{
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    width: 40px;
+    height: 40px;
+    color: rgb(211, 61, 61);
+}
+
+.editBtn:hover{
+    cursor: pointer;
+    color: rgb(249, 67, 67);
+}
+
 
 
 .content{

@@ -14,7 +14,7 @@ const router = Router();
 
 router.post('/api/post', upload.single('file'), CreatePost);
 
-router.put('/api/post', upload.single('file'), UpdatePost);
+router.put('/api/post/:id', upload.single('file'), UpdatePost);
 
 router.put('/api/post/keepphoto/:id', UpdatePostKeepPhoto);
 

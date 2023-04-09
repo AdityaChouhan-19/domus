@@ -22,6 +22,7 @@ import SavedPostingPage from './components/views/SavedPostingPage/SavedPostingPa
 import MyProfilePage from './components/views/MyProfilePage/MyProfilePage';
 import AdminReportedListPage from './components/views/admin/AdminReportedListPage/AdminReportedListPage';
 import AdminBannedListPage from './components/views/admin/AdminBannedListPage/AdminBannedListPage';
+import EditPostingPage from './components/views/EditPostingPage/EditPostingPage';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path="/myprofile" element={<MyProfilePage/>} />
             <Route path="/createposting" element={<CreatePostingPage/>} />
             <Route path="/post/:id" element={<PostingDetailPage/>} />
+            <Route path="/post/edit/:id" element={<EditPostingPage/>} />
 
             <Route path="/admin/userlist" element={<AdminUserListPage/>} />
             <Route path="/admin/reportedlist" element={<AdminReportedListPage/>} />
