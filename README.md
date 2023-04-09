@@ -18,6 +18,3 @@ Admin User Password : 11111111
 
 
 
-I have not completed validation checks for some input tags.
-So please type all correct data in the input tags.
-Thank you!
