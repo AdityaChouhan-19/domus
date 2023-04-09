@@ -50,6 +50,14 @@ export default function PostingDetailPage(){
 
     const [savedBtnToggle, setSavedBtnToggle] = useState(false);
 
+    const [comment, setComment] = useState('');
+
+    const [commentRefetch, setCommentRefetch] = useState(false);
+
+    const onChangeComment = (event)=>{
+        setComment(event.target.value);
+    }
+
     useEffect(()=>{
         Axios.get(API_URL + "/api/post/" + id, { withCredentials: true }).then((response) => {
             console.log(response.data);
@@ -75,7 +83,7 @@ export default function PostingDetailPage(){
             });
         });
 
-    }, [savedBtnToggle])
+    }, [savedBtnToggle, commentRefetch])
 
 
     
@@ -115,7 +123,7 @@ export default function PostingDetailPage(){
 
     const onClickReportBtnOnHandler = async () => {
         if(!auth.isAuth){
-            return alert('Please Login to Save It');
+            return alert('Please Login to Report It');
         }
         try{
             Axios.put(`${API_URL}/api/post/report/${data._id}`,{}, { withCredentials: true }).then((res) => {
@@ -144,11 +152,43 @@ export default function PostingDetailPage(){
         });
     }
 
+    const onClickCommentBtn = async () => {
+        if(comment === ''){
+            return
+        }
+        if(!auth.isAuth){
+            return alert('Please Login to Write It');
+        }
+        
+        let body = {
+            writerId: auth._id,
+            writerName: auth.firstname,
+            content: comment
+        }
+        Axios.put(`${API_URL}/api/post/comment/${data._id}`,body, { withCredentials: true }).then((res)=>{
+            console.log(res.data);
+            setComment('');
+            setCommentRefetch(!commentRefetch);
+            //alert('This posting has been banned!');
+            //redirect(-1);
+        });
+    }
+
 
     
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const commentList = data?.comments?.map((comment) =>
+        <>
+        {
+            <div>
+                <div>{comment.writerName} : {comment.content}</div>
+            </div>
+        }
+        </>  
+    );
     
 
     return (
@@ -189,6 +229,15 @@ export default function PostingDetailPage(){
                         }
                     </div>
                 </Box>
+                <div className={styles.commentBox}>
+                    <input onChange={onChangeComment} value={comment} className={styles.commentInput} type='text'></input>
+                    <Button onClick={onClickCommentBtn} className={styles.commentBtn}>Enter</Button>
+                </div>
+                <div>
+                    {
+                        data && commentList
+                    }
+                </div>
                 {/* <Button onClick={handleOpen}>Open modal</Button> */}
                 <Modal
                     aria-labelledby="transition-modal-title"

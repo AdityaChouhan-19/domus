@@ -185,3 +185,24 @@ export async function UpdatePostReportStatus(req, res){
     });
 
 }
+
+
+export async function UpdatePostComment(req, res){
+    console.log(req.params.id);
+    console.log(req.user._id);
+
+    console.log('comment called');
+    console.log(req.body);
+
+    Post.updateOne({ _id: req.params.id }, { $push: {comments: req.body}})
+    .then((err, result) => {
+        //console.log(res);
+        return res.status(200).send({
+            result
+        })
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
+}
