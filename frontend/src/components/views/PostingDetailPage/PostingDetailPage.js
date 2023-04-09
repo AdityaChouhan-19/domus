@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReportIcon from '@mui/icons-material/Report';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -176,6 +177,10 @@ export default function PostingDetailPage(){
         });
     }
 
+    const onClickEditBtn = () => {
+        redirect('/post/edit/' + data._id);
+    }
+
 
     
     const [open, setOpen] = useState(false);
@@ -215,6 +220,12 @@ export default function PostingDetailPage(){
                             <FavoriteIcon onClick={onClickSavedBtnOffHandler} className={styles.savedBtn} style={{width: '40px', height: '40px'}}/>
                             :
                             <FavoriteBorderIcon onClick={onClickSavedBtnOnHandler} className={styles.savedBtn} style={{width: '40px', height: '40px'}}/>
+                        }
+                        {
+                            auth?._id === data?.author?._id ? 
+                            <ModeEditOutlineIcon onClick={onClickEditBtn} className={styles.editBtn} style={{width: '40px', height: '40px'}}/> 
+                            : 
+                            ''
                         }
                         
                         <div className={styles.content}>

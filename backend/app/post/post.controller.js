@@ -39,33 +39,33 @@ export async function CreatePost(req, res){
 
 export async function UpdatePost(req, res){
     let newPath = null;
+    let body = null;
     if (req.file) {
         const {originalname,path} = req.file;
         const parts = originalname.split('.');
         const ext = parts[parts.length - 1];
         newPath = path+'.'+ext;
         fs.renameSync(path, newPath);
+        body = req.body;
+        body.cover = '/' + newPath;
+    }else{
+        body = req.body;
     }
 
-    const {token} = req.cookies;
-    jwt.verify(token, Secret, {}, async (err,info) => {
-        if (err) throw err;
-        const {id,title,summary,content,price} = req.body;
-        const postDoc = await Post.findById(id);
-        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-        if (!isAuthor) {
-        return res.status(400).json('you are not the author');
-        }
-        await postDoc.update({
-        title,
-        summary,
-        content,
-        price,
-        cover: newPath ? newPath : postDoc.cover,
-        });
+    delete body.file;
+    console.log(body);
 
-        res.json(postDoc);
+    Post.updateOne({ _id: req.params.id }, body)
+    .then((err, result) => {
+        return res.status(200).send({
+            result
+        })
+    })
+    .catch(err => {
+        console.error(err);
     });
+
+    
 }
 
 export async function UpdatePostKeepPhoto(req, res){
