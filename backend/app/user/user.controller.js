@@ -10,7 +10,6 @@ export async function Register(req, res){
     //get information from client
     //save into db. 
     const user = new User(req.body)
-    console.log("register called!@@@@@@@@@@@!@!@");
 
     user.save((err, userInfo) => {
         if (err) return res.json({ success: false, err })
@@ -49,7 +48,7 @@ export async function Login(req, res){
         //generate token.
         user.generateToken((err, user) => {
             if (err) return res.status(400).send(err);
-            console.log('calllllllllllll')
+
             // save token in cookie 
             res.cookie("x_auth", user.token)
             .status(200)
@@ -64,7 +63,7 @@ export async function Login(req, res){
 // role 0 -> User   
 export async function Auth(req, res){
     // if req arrives here, it means authentication is true.
-    console.log("called!!!!!@!@!@!@!@");
+
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0 ? false : true,
