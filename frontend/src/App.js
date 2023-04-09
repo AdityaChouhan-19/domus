@@ -13,7 +13,6 @@ import LoginPage from './components/views/LoginPage/LoginPage.js'
 import RegisterPage from './components/views/RegisterPage/RegisterPage.js'
 import CreatePostingPage from './components/views/CreatePostingPage/CreatePostingPage.js'
 
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { MyPostingPage } from './components/views/MyPostingPage/MyPostingPage';
 
 import PostingDetailPage from './components/views/PostingDetailPage/PostingDetailPage';
@@ -46,7 +45,6 @@ function App() {
             <Route path="/admin/bannedlist" element={<AdminBannedListPage/>} />
           </Routes>
           <Footer></Footer>
-          <ReactQueryDevtools initialIsOpen={false} />
         </>
   );
 }
