@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import Axios from 'axios'
 import { API_URL } from '../config/config';
 
@@ -19,14 +24,3 @@ export const getBannedPostings = async () => {
     return data;
 };
 
-// export const updateReleasePosting = async () => {
-//     const { data } = await Axios.get(API_URL + "/api/admin/releaseposting", { withCredentials: true });
-
-//     return data;
-// };
-
-// export const updateBanPosting = async () => {
-//     const { data } = await Axios.get(API_URL + "/api/admin/banposting", { withCredentials: true });
-
-//     return data;
-// };

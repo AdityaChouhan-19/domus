@@ -1,3 +1,8 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import { Router } from "express";
 import { Auth, GetMyInfo, GetSavedList, Login, Logout, Register, SavePostingOnOff } from "./user.controller.js";
 import auth from '../middleware/auth.js';

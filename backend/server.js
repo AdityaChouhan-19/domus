@@ -1,22 +1,17 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
 
 import express from 'express';
-
 import cors from 'cors';
-
 import mongoose from 'mongoose';
-
 const app = express();
-
 
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
-import multer from 'multer';
-const upload = multer({ dest: 'uploads/' });
 
-
-
-import fs from 'fs';
 import { MongoURI } from './app/utils/config.js';
 
 // ES Modules fix for __dirname
@@ -57,4 +52,3 @@ app.use('/', adminRouter);
 app.listen(Port, () => {
   console.log(`Localhost:4000 app listening on port ${Port}`);
 })
-//

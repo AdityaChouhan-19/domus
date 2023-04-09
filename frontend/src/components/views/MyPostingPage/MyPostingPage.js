@@ -1,7 +1,11 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useEffect } from 'react'
 import { useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../../api/auth';
 import { getMyPosting } from '../../../api/post';
 import { Post } from '../../Post/Post';
 import Button from '@mui/material/Button';
@@ -33,7 +37,6 @@ export const MyPostingPage = () => {
     if (error) return 'An error has occurred: ' + error.message
 
 
-    //console.log(data);
     if(!auth?.isAuth) return redirect('/login')
 
 

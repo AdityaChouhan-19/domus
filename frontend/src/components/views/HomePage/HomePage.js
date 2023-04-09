@@ -1,15 +1,14 @@
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { getFilteredPostings, getPostings } from '../../../api/post'
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -34,13 +33,13 @@ export default function HomePage(){
     setNearBy(event.target.value);
   };
   const onDistanceHandler = (event) => {
-    console.log(distance);
+
     if(event.target.value < 0){
       setDistance(0);
-      console.log(distance);
+
     }else{
       setDistance(event.target.value);
-      console.log(distance);
+
     }
   };
 
@@ -71,17 +70,11 @@ export default function HomePage(){
       maxPrice : maxPrice
     }
 
-    console.log(body);
-    
-
-    console.log('refetched!');
     refetch(body);
 
   };
 
-  //const { isLoading, error, data, refetch } = useQuery('postings', getFilteredPostings(body))
-
-
+  
   const { isLoading, error, data, refetch } = useQuery('postings', ()=>{
     let body = {
       nearby : nearBy,
@@ -94,7 +87,6 @@ export default function HomePage(){
   if (isLoading) return 'Loading...'
   if (error) return 'An error has occurred: ' + error.message
 
-  //console.log(data);
 
   const postings = data?.map((post) =>
     <>

@@ -1,4 +1,8 @@
-import logo from './logo.svg';
+/*
+Created By: Yun Ki Jung
+Modified By: Yun Ki Jung, Apr/09/2023
+*/
+
 import './App.css';
 import { Routes, Route, Link, redirect } from 'react-router-dom'
 
@@ -9,13 +13,9 @@ import LoginPage from './components/views/LoginPage/LoginPage.js'
 import RegisterPage from './components/views/RegisterPage/RegisterPage.js'
 import CreatePostingPage from './components/views/CreatePostingPage/CreatePostingPage.js'
 
-import Axios from 'axios'
-import {API_URL} from './config/config.js';
-import Auth from './hoc/auth.js';
-import { useQueryClient, QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { MyPostingPage } from './components/views/MyPostingPage/MyPostingPage';
-import { auth } from './api/auth';
+
 import PostingDetailPage from './components/views/PostingDetailPage/PostingDetailPage';
 import AdminUserListPage from './components/views/admin/AdminUserListPage/AdminUserListPage';
 import SavedPostingPage from './components/views/SavedPostingPage/SavedPostingPage';
@@ -24,15 +24,8 @@ import AdminReportedListPage from './components/views/admin/AdminReportedListPag
 import AdminBannedListPage from './components/views/admin/AdminBannedListPage/AdminBannedListPage';
 
 
-const queryClient = new QueryClient()
-
-
-
 function App() {
-  //useQuery("auth", auth);
-  // const client = useQueryClient();
-  // const user = client.getQueryData("auth");
-  //const { isLoading, error, data } = useQuery('auth', auth)
+
   return (
         <>
           <NavBar></NavBar>
@@ -56,26 +49,5 @@ function App() {
   );
 }
 
-// function Example() {
-//   const { isLoading, error, data } = useQuery('repoData', () =>
-//     Axios.get('https://api.github.com/repos/tannerlinsley/react-query').then(res =>
-//       res.data
-//     )
-//   )
-
-//   if (isLoading) return 'Loading...'
-
-//   if (error) return 'An error has occurred: ' + error.message
-
-//   return (
-//     <div>
-//       <h1>{data.name}</h1>
-//       <p>{data.description}</p>
-//       <strong>👀 {data.subscribers_count}</strong>{' '}
-//       <strong>✨ {data.stargazers_count}</strong>{' '}
-//       <strong>🍴 {data.forks_count}</strong>
-//     </div>
-//   )
-// }
 
 export default App;
