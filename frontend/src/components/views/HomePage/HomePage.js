@@ -1,6 +1,7 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import React, { useState } from 'react'
@@ -84,10 +85,12 @@ export default function HomePage(){
     }
     return getFilteredPostings(body);
   })
+  
   if (isLoading) return 'Loading...'
   if (error) return 'An error has occurred: ' + error.message
 
 
+  //create html tags based on data
   const postings = data?.map((post) =>
     <>
       {

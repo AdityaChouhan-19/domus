@@ -1,6 +1,7 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import User from './user.model.js';
@@ -79,6 +80,7 @@ export async function Auth(req, res){
 
 export async function Logout(req, res){
 
+    //delete token info in db
     User.findOneAndUpdate({ _id: req.user._id },
         { token: "" }
         , (err, user) => {

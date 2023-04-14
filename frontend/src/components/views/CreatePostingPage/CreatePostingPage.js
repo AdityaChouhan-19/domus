@@ -1,6 +1,7 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import React, { useState } from 'react'
@@ -62,6 +63,7 @@ export default function CreatePostingPage(){
 
     const onSubmitHandler = async (event) => {
 
+        //validation check
         if(nearBy === ''){
             return
         }
@@ -95,6 +97,7 @@ export default function CreatePostingPage(){
         newData.set('file', files[0]);
 
 
+        //Insert data in db
         Axios.post(API_URL + '/api/post', newData, { withCredentials: true }).then((res) => {
 
             redirect('/myposting');
@@ -106,6 +109,7 @@ export default function CreatePostingPage(){
     }
     
 
+    //get auth info 
     const { isLoading, error, data } = useQuery('auth', auth)
     if (isLoading) return 'Loading...'
     if (error) return 'An error has occurred: ' + error.message

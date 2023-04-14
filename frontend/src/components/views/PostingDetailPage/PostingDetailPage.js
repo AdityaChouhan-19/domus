@@ -1,6 +1,7 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import React, { useEffect, useState } from 'react'
@@ -59,13 +60,14 @@ export default function PostingDetailPage(){
     }
 
     useEffect(()=>{
+        //fetch postiing detail info
         Axios.get(API_URL + "/api/post/" + id, { withCredentials: true }).then((response) => {
             
             setData(response.data)
             if(response.data.isSoldOut !== 'N' && auth.isAdmin === false){
                 redirect('/');
             }
-
+            //fetch user info
             Axios.get(API_URL + "/api/users/myinfo", { withCredentials: true }).then((res) => {
                 
                 setMyInfo(res.data)
@@ -92,6 +94,7 @@ export default function PostingDetailPage(){
         }
         let copy = {...myInfo};
         copy.user.savedList.push(data._id)
+        //update the savedList data
         Axios.put(API_URL + "/api/users/savepostingonoff", copy.user.savedList, { withCredentials: true }).then((res) => {
             
             setMyInfo(res.data)
@@ -100,6 +103,7 @@ export default function PostingDetailPage(){
     }
 
     const onClickSavedBtnOffHandler = async () => {
+        //block guest user's action
         if(!auth.isAuth){
             return alert('Please Login to Save It');
         }
@@ -119,6 +123,7 @@ export default function PostingDetailPage(){
     }
 
     const onClickReportBtnOnHandler = async () => {
+        //block guest user's action
         if(!auth.isAuth){
             return alert('Please Login to Report It');
         }
