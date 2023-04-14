@@ -64,6 +64,13 @@ export default function RegisterPage(){
       }else{
         setEmailErrorMsg("");
       }
+
+      if(Password === "" || Password === null || Password.length < 8){
+        setPasswordErrorMsg("Password must be at least 8 letters or digits.")
+        return
+      }else{
+        setPasswordErrorMsg("");
+      } 
       
       if(Password !== CheckPassword) {
         setCheckPasswordErrorMsg("Check your password");
@@ -72,12 +79,7 @@ export default function RegisterPage(){
         setCheckPasswordErrorMsg("");
       }
       
-      if(Password === "" || Password === null || Password.length < 8){
-        setPasswordErrorMsg("Password must be filled in.")
-        return
-      }else{
-        setPasswordErrorMsg("");
-      } 
+      
 
       if(FirstName === "" || FirstName === null){
         setFirstNameErrorMsg("FirstName must be filled in.")
