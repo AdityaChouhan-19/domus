@@ -1,17 +1,20 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import User from "../user/user.model.js";
 import Post from '../post/post.model.js';
 
 export async function getUsers(req, res){
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }
 
     let searchInfo = {};
+    //check if any search condition in req object.
     if(req.query.searchEmail !== ''){
         searchInfo.email = { $regex: req.query.searchEmail, $options: "i" };
     }
@@ -24,6 +27,7 @@ export async function getUsers(req, res){
 }
 
 export async function getReportedPostings(req, res){
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }
@@ -37,6 +41,7 @@ export async function getReportedPostings(req, res){
 }
 
 export async function getBannedPostings(req, res){
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }
@@ -49,7 +54,7 @@ export async function getBannedPostings(req, res){
 }
 
 export async function updateReleasePosting(req, res){
-
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }
@@ -63,7 +68,7 @@ export async function updateReleasePosting(req, res){
 }
 
 export async function updateBanPosting(req, res){
-
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }
@@ -87,6 +92,7 @@ export async function updateBanPosting(req, res){
 }
 
 export async function updateBanUser(req, res){
+    //check if this user is admin
     if(req.user.role == 0){
         return res.send({success: false, message: 'You are not admin user'});
     }

@@ -1,0 +1,31 @@
+GET http://localhost:4000/api/post/6438d92ac71be686db4310f6
+
+###
+
+GET http://localhost:4000/api/post
+
+###
+
+POST http://localhost:4000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "admin@domus.com",
+  "password": "11111111"
+}
+
+###
+
+GET http://localhost:4000/api/post/myposting HTTP/1.1
+Cookie: x_auth=eyJhbGciOiJIUzI1NiJ9.NjQyZjc2YmU4YjI3ZWZiYmUyNzdjN2U3.XgS_G_vqGjMd1IC-9OJ4Mnujsgh2hIHRRNpNHeCwS0Y;
+
+###
+
+GET http://localhost:4000/api/users/savedlist HTTP/1.1
+Cookie: x_auth=eyJhbGciOiJIUzI1NiJ9.NjQyZjc2YmU4YjI3ZWZiYmUyNzdjN2U3.XgS_G_vqGjMd1IC-9OJ4Mnujsgh2hIHRRNpNHeCwS0Y;
+
+###
+
+GET http://localhost:4000/api/users/logout HTTP/1.1
+Cookie: x_auth=eyJhbGciOiJIUzI1NiJ9.NjQyZjc2YmU4YjI3ZWZiYmUyNzdjN2U3.XgS_G_vqGjMd1IC-9OJ4Mnujsgh2hIHRRNpNHeCwS0Y;
+

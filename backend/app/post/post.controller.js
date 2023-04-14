@@ -1,6 +1,7 @@
 /*
 Created By: Yun Ki Jung
-Modified By: Yun Ki Jung, Apr/09/2023
+Modified By: Yun Ki Jung, Apr/14/2023
+algorithm explanation added.
 */
 
 import Post from './post.model.js';
@@ -10,14 +11,17 @@ import {Secret} from '../utils/config.js';
 
 export async function CreatePost(req, res){
 
+    //set the path of file.
     const {originalname,path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
     const newPath = path+'.'+ext;
     fs.renameSync(path, newPath);
 
+    //get token from request object.
     let token = req.cookies.x_auth;
 
+    //decode token
     jwt.verify(token, Secret, async (err,info) => {
         if (err) throw err;
         const {title,summary,content,price,nearBy,distance,authorEmail} = req.body;
